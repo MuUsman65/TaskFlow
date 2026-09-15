@@ -10,7 +10,12 @@ function addTask() {
     console.log(taskInput.value);
     
     if (taskInput.value !== "") {
-        taskList.innerHTML += `<li>${taskInput.value}</li>`;
+        taskList.innerHTML += `
+        <li>
+            ${taskInput.value}
+            <button>Delete</button>
+        </li>
+        `;
         taskInput.value = "";
 
         totalTasks++;
@@ -24,4 +29,14 @@ taskInput.addEventListener("keydown", function(event) {
     if (event.key === "Enter") {
         addTask();
     }
-})
+});
+
+taskList.addEventListener("click", function(event) {
+    //console.log(event.target.textContent);
+    if (event.target.textContent === "Delete") {
+        event.target.parentElement.remove();
+
+        totalTasks--;
+        taskCount.textContent = "Total tasks: " + totalTasks;
+    }
+});
