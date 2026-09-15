@@ -39,4 +39,8 @@ taskList.addEventListener("click", function(event) {
         totalTasks--;
         taskCount.textContent = "Total tasks: " + totalTasks;
     }
+
+    if (event.target.tagName === "LI") {
+        event.target.classList.toggle("completed");
+    }
 });
