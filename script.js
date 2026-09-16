@@ -3,16 +3,33 @@ const addTaskButton = document.getElementById("addTaskButton");
 const taskInput = document.getElementById("taskInput");
 const taskList = document.getElementById("taskList");
 const taskCount = document.getElementById("taskCount");
+const priorityInput = document.getElementById("priorityInput");
 
 let totalTasks = 0;
 
 function addTask() {
-    console.log(taskInput.value);
+    //console.log(taskInput.value);
+    //console.log(priorityInput.value);
     
+    let priorityClass = "";
+
+    
+
     if (taskInput.value !== "") {
+        if (priorityInput.value === "High") {
+            priorityClass = "high";
+        }
+        if (priorityInput.value === "Medium") {
+            priorityClass = "medium";
+        }
+        if (priorityInput.value === "Low") {
+            priorityClass = "low";
+        }
+        console.log(priorityClass);
+
         taskList.innerHTML += `
         <li>
-            ${taskInput.value}
+            ${taskInput.value} - <span class=${priorityClass}>${priorityInput.value}</span>
             <button>Delete</button>
         </li>
         `;
@@ -20,6 +37,7 @@ function addTask() {
 
         totalTasks++;
         taskCount.textContent = "Total tasks: " + totalTasks;
+        priorityInput.value = "Medium";
     }
 }
 

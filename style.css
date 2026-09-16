@@ -2,3 +2,15 @@
     text-decoration: line-through;
     opacity: 0.6;
 }
+
+.high {
+    color: red
+}
+
+.medium {
+    color: orange
+}
+
+.low {
+    color: green;
+}
