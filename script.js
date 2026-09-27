@@ -54,8 +54,13 @@ function addTask() {
 }
 
 function displayTask(task, index) {
+    let completedClass = "";
+    if (task.completed === true) {
+        completedClass = "completed";
+    }
+
     taskList.innerHTML += `
-    <li>
+    <li data-index="${index}" class="${completedClass}">
         ${task.text} - <span class=${task.priority.toLowerCase()}>${task.priority}</span>
         <button data-index="${index}">Delete</button>
     </li>
@@ -85,7 +90,16 @@ taskList.addEventListener("click", function(event) {
     }
 
     if (event.target.tagName === "LI") {
+        const index = event.target.dataset.index;
+
         event.target.classList.toggle("completed");
+        tasks[index].completed = !tasks[index].completed;
+
+        console.log(tasks[index]);
+
+        localStorage.setItem("tasks", JSON.stringify(tasks));
+
+
     }
 });
 
